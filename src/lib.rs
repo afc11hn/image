@@ -103,6 +103,8 @@ pub mod tga;
 pub mod tiff;
 #[cfg(feature = "webp")]
 pub mod webp;
+#[cfg(feature = "libwebp")]
+pub mod libwebp;
 
 mod animation;
 mod buffer;

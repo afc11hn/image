@@ -24,8 +24,8 @@ use crate::tga;
 use crate::dds;
 #[cfg(feature = "tiff")]
 use crate::tiff;
-#[cfg(feature = "webp")]
-use crate::webp;
+#[cfg(feature = "libwebp")]
+use crate::libwebp;
 
 use crate::color;
 use crate::image;
@@ -66,8 +66,8 @@ pub fn load<R: BufRead + Seek>(r: R, format: ImageFormat) -> ImageResult<Dynamic
         image::ImageFormat::Gif => DynamicImage::from_decoder(gif::GifDecoder::new(r)?),
         #[cfg(feature = "jpeg")]
         image::ImageFormat::Jpeg => DynamicImage::from_decoder(jpeg::JpegDecoder::new(r)?),
-        #[cfg(feature = "webp")]
-        image::ImageFormat::WebP => DynamicImage::from_decoder(webp::WebPDecoder::new(r)?),
+        #[cfg(feature = "libwebp")]
+        image::ImageFormat::WebP => DynamicImage::from_decoder(libwebp::WebPDecoder::new(r)?),
         #[cfg(feature = "tiff")]
         image::ImageFormat::Tiff => DynamicImage::from_decoder(tiff::TiffDecoder::new(r)?),
         #[cfg(feature = "tga")]
@@ -107,8 +107,8 @@ pub(crate) fn image_dimensions_with_format_impl<R: BufRead + Seek>(fin: R, forma
         image::ImageFormat::Png => png::PngDecoder::new(fin)?.dimensions(),
         #[cfg(feature = "gif")]
         image::ImageFormat::Gif => gif::GifDecoder::new(fin)?.dimensions(),
-        #[cfg(feature = "webp")]
-        image::ImageFormat::WebP => webp::WebPDecoder::new(fin)?.dimensions(),
+        #[cfg(feature = "libwebp")]
+        image::ImageFormat::WebP => libwebp::WebPDecoder::new(fin)?.dimensions(),
         #[cfg(feature = "tiff")]
         image::ImageFormat::Tiff => tiff::TiffDecoder::new(fin)?.dimensions(),
         #[cfg(feature = "tga")]
